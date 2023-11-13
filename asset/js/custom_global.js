@@ -2,19 +2,6 @@
 const colorPicker = document.getElementById('colorPicker');
 const displayColor = document.getElementById('displayColor');
 
-/*colorPicker.addEventListener('input', function () {
-    const chosenColor = colorPicker.value;
-    displayColor.style.backgroundColor = chosenColor;
-});*/
-
-
-function updateColorInfo(color) {
-    document.getElementById('hexValue').textContent = `HEX: ${color}`;
-    const rgb = hexToRgb(color);
-    document.getElementById('rgbValue').textContent = `RGB: ${rgb.r}, ${rgb.g}, ${rgb.b}`;
-    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
-    document.getElementById('hslValue').textContent = `HSL: ${hsl.h}, ${hsl.s}%, ${hsl.l}%`;
-}
 
 function addColorToHistory(color) {
     const colorDiv = document.createElement('div');
@@ -28,11 +15,45 @@ function addColorToHistory(color) {
     document.getElementById('colorHistory').appendChild(colorDiv);
 }
 
-/*function addColorToHistory(color) {
-    const colorDiv = document.createElement('div');
-    colorDiv.style.backgroundColor = color;
-    document.getElementById('colorHistory').appendChild(colorDiv);
+// Reusable function to copy any text to clipboard
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Clipboard successfully set
+        alert(`Copied to clipboard: ${text}`);
+    }, (err) => {
+        // Clipboard write failed, handle error
+        console.error('Failed to copy: ', err);
+        alert('Failed to copy, please try again.');
+    });
+}
+
+/*function copyToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('Copy');
+    textArea.remove();
+    // Optional: Display an alert or a tooltip that the color has been copied
+    alert(`Copied to clipboard: ${text}`);
 }*/
+
+function updateColorInfo(color) {
+    const hexValueElement = document.getElementById('hexValue');
+    const rgbValueElement = document.getElementById('rgbValue');
+    const hslValueElement = document.getElementById('hslValue');
+
+    hexValueElement.textContent = `HEX: ${color}`;
+    const rgb = hexToRgb(color);
+    rgbValueElement.textContent = `RGB: ${rgb.r}, ${rgb.g}, ${rgb.b}`;
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    hslValueElement.textContent = `HSL: ${hsl.h}, ${hsl.s}%, ${hsl.l}%`;
+
+    // Set up copy to clipboard on click for each color code element
+    [hexValueElement, rgbValueElement, hslValueElement].forEach(el => {
+        el.onclick = () => copyToClipboard(el.textContent.split(': ')[1]);
+    });
+}
 
 colorPicker.addEventListener('input', function () {
     const chosenColor = colorPicker.value;

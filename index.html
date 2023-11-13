@@ -38,17 +38,18 @@
 
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <label for="colorPicker">*,*</label>
+                    <label for="colorPicker">Click here to pick a color</label>
                     <input type="color" id="colorPicker" class="form-control form-control-lg mb-3">
-                    <div id="displayColor" class="border"></div>
+                    <div id="displayColor" class="border rounded-circle"></div>
                 </div>
             </div>
 
             <div class="color-info">
-                <p id="hexValue">HEX: #ffffff</p>
-                <p id="rgbValue">RGB: 255, 255, 255</p>
-                <p id="hslValue">HSL: 0, 0%, 100%</p>
+                <button id="hexValue" class="color-code-btn">HEX: #ffffff</button>
+                <button id="rgbValue" class="color-code-btn">RGB: 255, 255, 255</button>
+                <button id="hslValue" class="color-code-btn">HSL: 0, 0%, 100%</button>
             </div>
+            
             <div id="colorHistory" class="color-history"></div>
         </div>
     </main>
