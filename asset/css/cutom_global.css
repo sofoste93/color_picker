@@ -1,0 +1,44 @@
+/*custom_global.css*/
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#colorPicker {
+    margin: 20px;
+}
+
+#displayColor {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    border: 1px solid black;
+    /* Ensure the background is set to a default color 
+    that will change with the color picker */
+    background-color: #ffffff;
+}
+
+.color-info p {
+    margin: 5px;
+}
+
+.color-history {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.color-history div {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border: 1px solid #ddd;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
