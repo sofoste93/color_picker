@@ -19,8 +19,20 @@ function updateColorInfo(color) {
 function addColorToHistory(color) {
     const colorDiv = document.createElement('div');
     colorDiv.style.backgroundColor = color;
+    colorDiv.className = 'color-history-item'; // Add a class for styling if needed
+    colorDiv.addEventListener('click', () => {
+        // Set the background color of the display and update the info
+        displayColor.style.backgroundColor = color;
+        updateColorInfo(color);
+    });
     document.getElementById('colorHistory').appendChild(colorDiv);
 }
+
+/*function addColorToHistory(color) {
+    const colorDiv = document.createElement('div');
+    colorDiv.style.backgroundColor = color;
+    document.getElementById('colorHistory').appendChild(colorDiv);
+}*/
 
 colorPicker.addEventListener('input', function () {
     const chosenColor = colorPicker.value;
